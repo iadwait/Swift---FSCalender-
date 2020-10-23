@@ -21,19 +21,24 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
     func setupCalender()
     {
         calender.delegate = self
+        calender.dataSource = self
+        
         calender.scrollDirection = .vertical
         calender.scope = .month
         
-        calender.dataSource = self
+        //Changing Fonts
         calender.appearance.titleFont = UIFont.systemFont(ofSize: 17.0)
         calender.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 25.0)
         calender.appearance.weekdayFont = UIFont.systemFont(ofSize: 17.0)
         
+        //Changing Colors
         calender.appearance.titleTodayColor = .black
         calender.appearance.todayColor = .green
         calender.appearance.titleDefaultColor = .black
         calender.appearance.headerTitleColor = .red
         calender.appearance.weekdayTextColor = .blue
+        
+        calender.allowsMultipleSelection = true //For Multiple Selections
         
     }
 
