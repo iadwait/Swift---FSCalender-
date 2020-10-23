@@ -64,6 +64,10 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         df.dateFormat = "dd-MM-yyyy"
         guard let excludeedDate = df.date(from: "26-10-2020") else { return true }
         if date.compare(excludeedDate) == .orderedSame{
+            let alert = UIAlertController(title: "Can't be selected", message: "Date Reserved,Sorry You cannot select this date!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "ok", style: .cancel, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert,animated: true)
             return false
         }
         return true
