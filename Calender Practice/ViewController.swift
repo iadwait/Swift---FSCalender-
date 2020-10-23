@@ -9,7 +9,7 @@
 import UIKit
 import FSCalendar
 
-class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
+class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance {
     
     @IBOutlet weak var calender: FSCalendar!
     override func viewDidLoad() {
@@ -83,6 +83,19 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         let someDateTime = formatter.date(from: "2020/12/15 22:31") //Place Max Date Here
         return someDateTime!
+    }
+    
+    //FSCalendar Appearance Delegate
+    
+    //Seting color for date which cannot be selected so that user undestands
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        let df = DateFormatter()
+        df.dateFormat = "dd-MM-yyyy"
+        guard let excludedDate = df.date(from: "26-10-2020") else { return nil }
+        if date.compare(excludedDate) == .orderedSame{
+            return .gray
+        }
+        return nil
     }
     
 }
