@@ -85,6 +85,17 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         return someDateTime!
     }
     
+    //Add Dot's to Indicate Events
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let df = DateFormatter()
+        df.dateFormat = "dd-MM-yyyy"
+        guard let eventDate = df.date(from: "26-10-2020") else { return 0 }
+        if date.compare(eventDate) == .orderedSame{
+            return 2
+        }
+        return 0
+    }
+    
     //FSCalendar Appearance Delegate
     
     //Seting color for date which cannot be selected so that user undestands
