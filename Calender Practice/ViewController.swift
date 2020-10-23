@@ -25,6 +25,16 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
         calender.scope = .month
         
         calender.dataSource = self
+        calender.appearance.titleFont = UIFont.systemFont(ofSize: 17.0)
+        calender.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 25.0)
+        calender.appearance.weekdayFont = UIFont.systemFont(ofSize: 17.0)
+        
+        calender.appearance.titleTodayColor = .black
+        calender.appearance.todayColor = .green
+        calender.appearance.titleDefaultColor = .black
+        calender.appearance.headerTitleColor = .red
+        calender.appearance.weekdayTextColor = .blue
+        
     }
 
     //Delegate
