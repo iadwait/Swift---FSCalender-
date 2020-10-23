@@ -10,7 +10,7 @@ import UIKit
 import FSCalendar
 
 class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
-
+    
     @IBOutlet weak var calender: FSCalendar!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +41,30 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
         calender.allowsMultipleSelection = true //For Multiple Selections
         
     }
-
+    
     //Delegate
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let df = DateFormatter()
         df.dateFormat = "dd-MMM-YYYY"
         let stringDate = df.string(from: date)
         print("Selected Date = \(stringDate)")
+    }
+    
+    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let df = DateFormatter()
+        df.dateFormat = "dd-MMM-YYYY"
+        let deSelectedDate = df.string(from: date)
+        print("DeSelected Date = \(deSelectedDate)")
+    }
+        
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+        let df = DateFormatter()
+        df.dateFormat = "dd-MM-yyyy"
+        guard let excludeedDate = df.date(from: "26-10-2020") else { return true }
+        if date.compare(excludeedDate) == .orderedSame{
+            return false
+        }
+        return true
     }
     
     //Data Source
@@ -62,6 +79,6 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
         let someDateTime = formatter.date(from: "2020/12/15 22:31") //Place Max Date Here
         return someDateTime!
     }
-
+    
 }
 
