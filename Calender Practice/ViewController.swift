@@ -50,6 +50,7 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
         print("Selected Date = \(stringDate)")
     }
     
+    //After Deselecting
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let df = DateFormatter()
         df.dateFormat = "dd-MMM-YYYY"
@@ -57,6 +58,7 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
         print("DeSelected Date = \(deSelectedDate)")
     }
         
+    //If we want a Date to be not Selected
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
         let df = DateFormatter()
         df.dateFormat = "dd-MM-yyyy"
@@ -68,10 +70,13 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource {
     }
     
     //Data Source
+    
+    //Don't Allow user to select dates before current date
     func minimumDate(for calendar: FSCalendar) -> Date {
         return Date()
     }
     
+    //Don't Allow user to Select dates after Specific Dates
     func maximumDate(for calendar: FSCalendar) -> Date {
         //return Date().addingTimeInterval((24*60*60)*7) //Just put number after *, to specify the days
         let formatter = DateFormatter()
